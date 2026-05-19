@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMK ANAK BANGSA</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0; padding: 0; box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        scroll-behavior: smooth;
+    }
+
+    /* LOGIN PAGE */
+    #loginPage {
+        height: 100vh;
+        background: linear-gradient(135deg, #1e3a8a 0%, #0ea5e9 50%, #14b8a6 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+   .login-box {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 45px 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+        width: 400px;
+        text-align: center;
+    }
+   .logo {
+        width: 90px; height: 90px;
+        background: linear-gradient(135deg, #0ea5e9, #14b8a6);
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 36px; color: white; font-weight: 700;
+    }
+   .login-box h1 { color: #1e293b; margin-bottom: 8px; font-size: 26px; font-weight: 700; }
+   .login-box p.sub { color: #64748b; margin-bottom: 25px; font-size: 14px; }
+   .tab {
+        display: flex; margin-bottom: 25px; border-radius: 12px;
+        overflow: hidden; background: #e2e8f0;
+    }
+   .tab button {
+        flex: 1; padding: 12px; border: none; cursor: pointer;
+        background: transparent; font-weight: 600; transition: 0.3s;
+        color: #475569;
+    }
+   .tab button.active {
+        background: linear-gradient(90deg, #0ea5e9, #14b8a6);
+        color: white;
+    }
+    input, select {
+        width: 100%; padding: 14px; margin: 10px 0;
+        border: 2px solid #cbd5e1; border-radius: 12px;
+        font-size: 15px; outline: none; transition: 0.3s;
+    }
+    input:focus, select:focus {
+        border-color: #0ea5e9;
+        box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    }
+   .login-btn,.btn {
+        width: 100%; padding: 14px;
+        background: linear-gradient(90deg, #0ea5e9, #14b8a6);
+        color: white; border: none; border-radius: 12px;
+        font-size: 16px; font-weight: 600; cursor: pointer;
+        margin-top: 15px; transition: 0.3s;
+    }
+   .login-btn:hover,.btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4);
+    }
+   .btn-small {
+        padding: 6px 12px;
+        font-size: 13px;
+        width: auto;
+        margin: 0 5px;
+    }
+   .btn-danger { background: #ef4444; }
+   .btn-danger:hover { background: #dc2626; }
+   .btn-warning { background: #f59e0b; }
+   .btn-warning:hover { background: #d97706; }
+   .error {
+        color: #ef4444; font-size: 13px; margin-top: 12px; display: none;
+    }
+   .info-box {
+        background: #eff6ff; padding: 14px; border-radius: 10px;
+        margin-top: 20px; font-size: 13px; color: #1e40af; text-align: left;
+    }
+
+    /* MAIN WEBSITE */
+    #mainPage { display: none; }
+    body { background: #f0f7ff; color: #1e293b; }
+
+    nav {
+        background: linear-gradient(90deg, #1e40af, #0ea5e9);
+        padding: 15px 60px;
+        position: sticky; top: 0; z-index: 1000;
+        display: flex; justify-content: space-between; align-items: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    nav.logo-text { font-size: 22px; font-weight: 700; color: white; }
+    nav ul {
+        list-style: none; display: flex; gap: 20px;
+        flex-wrap: wrap; align-items: center;
+    }
+    nav ul li a {
+        color: white; text-decoration: none; font-weight: 500;
+        transition: 0.3s; padding: 8px 14px; border-radius: 8px;
+        cursor: pointer;
+    }
+    nav ul li a:hover { background: rgba(255,255,255,0.2); }
+   .btn-logout { background: #ef4444!important; }
+   .btn-logout:hover { background: #dc2626!important; }
+
+    section { padding: 90px 80px; }
+    section:nth-child(even) { background: white; }
+   .section-header {
+        text-align: center; margin-bottom: 50px;
+    }
+   .section-header h2 {
+        font-size: 36px; color: #0f172a; margin-bottom: 10px;
+    }
+   .section-header.line {
+        width: 80px; height: 4px;
+        background: linear-gradient(90deg, #0ea5e9, #14b8a6);
+        margin: 0 auto; border-radius: 2px;
+    }
+   .section-header p {
+        color: #64748b; margin-top: 15px; font-size: 16px;
+    }
+
+    #home {
+        min-height: 85vh;
+        background: linear-gradient(135deg, #1e40af 0%, #0ea5e9 50%, #14b8a6 100%);
+        display: flex; flex-direction: column; justify-content: center;
+        align-items: center; text-align: center; color: white;
+        padding: 40px 20px;
+    }
+    #home h1 { font-size: 48px; margin-bottom: 15px; font-weight: 700; }
+    #home p { font-size: 18px; max-width: 650px; opacity: 0.95; }
+
+   .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+   .card {
+        background: white; padding: 30px; border-radius: 16px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        transition: 0.3s; border-top: 4px solid #14b8a6;
+    }
+   .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(14, 165, 233, 0.2);
+    }
+   .card h3 { color: #0ea5e9; margin-bottom: 12px; font-size: 20px; }
+   .card p,.card li { color: #475569; line-height: 1.8; }
+   .card ul { padding-left: 20px; }
+   .icon { font-size: 40px; margin-bottom: 15px; }
+
+    /* TABLE */
+   .table-wrapper {
+        overflow-x: auto;
+        margin-top: 30px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+    table th {
+        background: linear-gradient(90deg, #0ea5e9, #14b8a6);
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+    }
+    table td {
+        padding: 15px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    table tr:hover {
+        background: #f8fafc;
+    }
+
+    /* MODAL */
+   .modal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+    }
+   .modal.active { display: flex; }
+   .modal-content {
+        background: white;
+        padding: 30px;
+        border-radius: 16px;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+   .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+   .modal-header h3 {
+        color: #1e293b;
+        font-size: 22px;
+    }
+   .close-btn {
+        background: none;
+        border: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: #64748b;
+    }
+
+    footer {
+        background: #0f172a;
+        color: white;
+        text-align: center;
+        padding: 25px;
+        font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+        nav { flex-direction: column; padding: 15px 20px; }
+        nav ul { margin-top: 15px; gap: 10px; }
+        section { padding: 60px 25px; }
+        #home h1 { font-size: 32px; }
+       .login-box { width: 100%; }
+    }
+</style>
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage">
+    <div class="login-box">
+        <div class="logo">AB</div>
+        <h1>SMK ANAK BANGSA</h1>
+        <p class="sub">Sistem Informasi Sekolah</p>
+
+        <div class="tab">
+            <button id="adminTab" class="active" onclick="switchTab('admin')">Admin</button>
+            <button id="userTab" onclick="switchTab('user')">User/Siswa</button>
+        </div>
+
+        <div id="adminForm">
+            <input type="text" id="adminUser" placeholder="Username Admin" value="admin">
+            <input type="password" id="adminPass" placeholder="Password Admin" value="admin123">
+            <button class="login-btn" onclick="login('admin')">Login sebagai Admin</button>
+        </div>
+
+        <div id="userForm" style="display:none;">
+            <input type="text" id="userUser" placeholder="Username Siswa" value="siswa1">
+            <input type="password" id="userPass" placeholder="Password Siswa" value="siswa123">
+            <button class="login-btn" onclick="login('user')">Login sebagai Siswa</button>
+        </div>
+
+        <p class="error" id="errorMsg">Username atau password salah!</p>
+
+        <div class="info-box">
+            <strong>Akun Demo:</strong><br>
+            Admin: admin / admin123<br>
+            Siswa: siswa1 / siswa123, siswa2 / siswa123
+        </div>
+    </div>
+</div>
+
+<!-- MAIN WEBSITE -->
+<div id="mainPage">
+    <nav>
+        <div class="logo-text">SMK ANAK BANGSA</div>
+        <ul id="navMenu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#profil">Profil</a></li>
+            <li><a href="#visimisi">Visi Misi</a></li>
+            <li><a href="#jurusan">Jurusan</a></li>
+            <li><a href="#ekskul">Ekstrakulikuler</a></li>
+            <li><a href="#organisasi">Organisasi</a></li>
+            <li><a href="#prestasi">Prestasi</a></li>
+            <li id="dashboardMenu" style="display:none;"><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#" class="btn-logout" onclick="logout()">Logout</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <h1>Selamat Datang di SMK ANAK BANGSA</h1>
+        <p>Menyiapkan generasi terampil, berkarakter, dan siap kerja untuk membangun bangsa</p>
+    </section>
+
+    <section id="profil">
+        <div class="section-header">
+            <h2>Profil Sekolah</h2>
+            <div class="line"></div>
+            <p>Mengenal lebih dekat SMK ANAK BANGSA</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="icon">🏫</div>
+                <h3>Tentang Kami</h3>
+                <p>SMK ANAK BANGSA berdiri sejak 2005 dengan fokus pendidikan vokasi berkualitas.</p>
+            </div>
+            <div class="card">
+                <div class="icon">📍</div>
+                <h3>Alamat</h3>
+                <p>Jl. Pendidikan No. 45, Bandung, Jawa Barat<br>
+                Telp: (022) 1234-5678</p>
+            </div>
+            <div class="card">
+                <div class="icon">🎓</div>
+                <h3>Akreditasi</h3>
+                <p>Terakreditasi A oleh BAN-SM<br>1200+ siswa aktif</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="visimisi">
+        <div class="section-header">
+            <h2>Visi & Misi</h2>
+            <div class="line"></div>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="icon">🎯</div>
+                <h3>Visi</h3>
+                <p>"Menjadi SMK unggulan yang menghasilkan lulusan kompeten dan berdaya saing global."</p>
+            </div>
+            <div class="card">
+                <div class="icon">📋</div>
+                <h3>Misi</h3>
+                <ul>
+                    <li>Pembelajaran berbasis industri dan teknologi</li>
+                    <li>Membentuk karakter disiplin dan kerja keras</li>
+                    <li>Meningkatkan sertifikasi kompetensi siswa</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="jurusan">
+        <div class="section-header">
+            <h2>Jurusan Keahlian</h2>
+            <div class="line"></div>
+        </div>
+        <div class="grid">
+            <div class="card"><div class="icon">💻</div><h3>Rekayasa Perangkat Lunak</h3><p>Programming, web development, mobile apps.</p></div>
+            <div class="card"><div class="icon">⚙️</div><h3>Teknik Mesin</h3><p>CNC, otomasi industri, perawatan mesin.</p></div>
+            <div class="card"><div class="icon">🔌</div><h3>Teknik Elektronika</h3><p>Robotik, IoT, sistem kontrol otomatis.</p></div>
+            <div class="card"><div class="icon">📊</div><h3>Akuntansi</h3><p>Keuangan, perpajakan, akuntansi komputer.</p></div>
+        </div>
+    </section>
+
+    <section id="ekskul">
+        <div class="section-header">
+            <h2>Ekstrakulikuler</h2>
+            <div class="line"></div>
+        </div>
+        <div class="grid">
+            <div class="card"><div class="icon">⚽</div><h3>Olahraga</h3><p>Futsal, Basket, Voli, Pencak Silat</p></div>
+            <div class="card"><div class="icon">🎨</div><h3>Seni & Budaya</h3><p>Band, Tari Sunda, Angklung, Teater</p></div>
+            <div class="card"><div class="icon">🤖</div><h3>Teknologi</h3><p>Robotik Club, Coding Club</p></div>
+        </div>
+    </section>
+
+    <section id="organisasi">
+        <div class="section-header">
+            <h2>Organisasi Siswa</h2>
+            <div class="line"></div>
+        </div>
+        <div class="grid">
+            <div class="card"><div class="icon">🏛️</div><h3>OSIS</h3><p>Organisasi Siswa Intra Sekolah</p></div>
+            <div class="card"><div class="icon">📢</div><h3>MPK</h3><p>Majelis Perwakilan Kelas</p></div>
+            <div class="card"><div class="icon">⛺</div><h3>Pramuka</h3><p>Membentuk karakter mandiri</p></div>
+        </div>
+    </section>
+
+    <section id="prestasi">
+        <div class="section-header">
+            <h2>Prestasi Sekolah</h2>
+            <div class="line"></div>
+        </div>
+        <div class="grid">
+            <div class="card"><div class="icon">🥇</div><h3>LKS Nasional 2024</h3><p>Juara 1 Web Development</p></div>
+            <div class="card"><div class="icon">🏆</div><h3>LKS Provinsi 2024</h3><p>Juara 1 Teknik Mesin</p></div>
+            <div class="card"><div class="icon">🌿</div><h3>Adiwiyata Nasional</h3><p>Sekolah Peduli Lingkungan 2023</p></div>
+        </div>
+    </section>
+
+    <!-- DASHBOARD ADMIN -->
+    <section id="dashboard" style="display:none;">
+        <div class="section-header">
+            <h2>Dashboard Admin</h2>
+            <div class="line"></div>
+            <p>Kelola data siswa dan nilai</p>
+        </div>
+        <button class="btn" style="width:auto; margin-bottom:20px;" onclick="openModal()">+ Tambah Siswa</button>
+        <div class="table-wrapper">
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th>NIS</th>
+                        <th>Nama</th>
+                        <th>Jurusan</th>
+                        <th>Matematika</th>
+                        <th>Bahasa Indonesia</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- DASHBOARD SISWA -->
+    <section id="siswaDashboard" style="display:none;">
+        <div class="section-header">
+            <h2>Data Siswa</h2>
+            <div class="line"></div>
+        </div>
+        <div class="card" id="siswaData">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SMK ANAK BANGSA. Semua Hak Dilindungi.</p>
+    </footer>
+</div>
+
+<!-- MODAL TAMBAH/EDIT SISWA -->
+<div class="modal" id="studentModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modalTitle">Tambah Siswa</h3>
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+        </div>
+        <input type="hidden" id="editIndex">
+        <input type="text" id="nis" placeholder="NIS">
+        <input type="text" id="nama" placeholder="Nama Siswa">
+        <select id="jurusan">
+            <option value="">Pilih Jurusan</option>
+            <option value="RPL">Rekayasa Perangkat Lunak</option>
+            <option value="TKJ">Teknik Komputer Jaringan</option>
+            <option value="TKRO">Teknik Kendaraan Ringan</option>
+            <option value="AKL">Akuntansi</option>
+        </select>
+        <input type="number" id="matematika" placeholder="Nilai Matematika" min="0" max="100">
+        <input type="number" id="bahasa" placeholder="Nilai Bahasa Indonesia" min="0" max="100">
+        <button class="btn" onclick="saveStudent()">Simpan</button>
+    </div>
+</div>
+
+<script>
+    let currentUser = null;
+    let currentRole = null;
+    let students = [
+        {nis: '1001', nama: 'Ahmad Fauzi', jurusan: 'RPL', matematika: 85, bahasa: 90, username: 'siswa1'},
+        {nis: '1002', nama: 'Siti Nurhaliza', jurusan: 'TKJ', matematika: 78, bahasa: 85, username: 'siswa2'}
+    ];
+    let users = {
+        admin: {username: 'admin', password: 'admin123', role: 'admin'},
+        siswa1: {username: 'siswa1', password: 'siswa123', role: 'siswa', nis: '1001'},
+        siswa2: {username: 'siswa2', password: 'siswa123', role: 'siswa', nis: '1002'}
+    };
+
+    function switchTab(role) {
+        document.getElementById('adminTab').classList.remove('active');
+        document.getElementById('userTab').classList.remove('active');
+        document.getElementById('adminForm').style.display = 'none';
+        document.getElementById('userForm').style.display = 'none';
+
+        if (role === 'admin') {
+            document.getElementById('adminTab').classList.add('active');
+            document.getElementById('adminForm').style.display = 'block';
+        } else {
+            document.getElementById('userTab').classList.add('active');
+            document.getElementById('userForm').style.display = 'block';
+        }
+        document.getElementById('errorMsg').style.display = 'none';
+    }
+
+    function login(role) {
+        let user, pass, userData;
+
+        if (role === 'admin') {
+            user = document.getElementById('adminUser').value;
+            pass = document.getElementById('adminPass').value;
+        } else {
+            user = document.getElementById('userUser').value;
+            pass = document.getElementById('userPass').value;
+        }
+
+        userData = users[user];
+        if (userData && userData.password === pass && userData.role === role) {
+            currentUser = userData;
+            currentRole = role;
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'block';
+
+            if (role === 'admin') {
+                document.getElementById('dashboardMenu').style.display = 'block';
+                document.getElementById('dashboard').style.display = 'block';
+                renderStudentTable();
+            } else {
+                document.getElementById('siswaDashboard').style.display = 'block';
+                renderSiswaData();
+            }
+            window.scrollTo(0, 0);
+        } else {
+            document.getElementById('errorMsg').style.display = 'block';
+        }
+    }
+
+    function logout() {
+        if(confirm("Yakin ingin logout?")) {
+            currentUser = null;
+            currentRole = null;
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('dashboardMenu').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('siswaDashboard').style.display = 'none';
+        }
+    }
+
+    function renderStudentTable() {
+        const tbody = document.getElementById('studentTableBody');
+        tbody.innerHTML = '';
+        students.forEach((student, index) => {
+            tbody.innerHTML += `
+                <tr>
+                    <td>${student.nis}</td>
+                    <td>${student.nama}</td>
+                    <td>${student.jurusan}</td>
+                    <td>${student.matematika}</td>
+                    <td>${student.bahasa}</td>
+                    <td>
+                        <button class="btn btn-small btn-warning" onclick="editStudent(${index})">Edit</button>
+                        <button class="btn btn-small btn-danger" onclick="deleteStudent(${index})">Hapus</button>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    function renderSiswaData() {
+        const student = students.find(s => s.nis === currentUser.nis);
+        if (student) {
+            document.getElementById('siswaData').innerHTML = `
+                <h3>Data Pribadi</h3>
+                <p><strong>NIS:</strong> ${student.nis}</p>
+                <p><strong>Nama:</strong> ${student.nama}</p>
+                <p><strong>Jurusan:</strong> ${student.jurusan}</p>
+                <hr style="margin:20px 0;">
+                <h3>Nilai</h3>
+                <p><strong>Matematika:</strong> ${student.matematika}</p>
+                <p><strong>Bahasa Indonesia:</strong> ${student.bahasa}</p>
+                <p><strong>Rata-rata:</strong> ${((student.matematika + student.bahasa)/2).toFixed(1)}</p>
+            `;
+        }
+    }
+
+    function openModal(index = null) {
+        document.getElementById('studentModal').classList.add('active');
+        if (index!== null) {
+            const student = students[index];
+            document.getElementById('modalTitle').textContent = 'Edit Siswa';
+            document.getElementById('editIndex').value = index;
+            document.getElementById('nis').value = student.nis;
+            document.getElementById('nama').value = student.nama;
+            document.getElementById('jurusan').value = student.jurusan;
+            document.getElementById('matematika').value = student.matematika;
+            document.getElementById('bahasa').value = student.bahasa;
+        } else {
+            document.getElementById('modalTitle').textContent = 'Tambah Siswa';
+            document.getElementById('editIndex').value = '';
+            document.getElementById('nis').value = '';
+            document.getElementById('nama').value = '';
+            document.getElementById('jurusan').value = '';
+            document.getElementById('matematika').value = '';
+            document.getElementById('bahasa').value = '';
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('studentModal').classList.remove('active');
+    }
+
+    function saveStudent() {
+        const index = document.getElementById('editIndex').value;
+        const student = {
+            nis: document.getElementById('nis').value,
+            nama: document.getElementById('nama').value,
+            jurusan: document.getElementById('jurusan').value,
+            matematika: parseInt(document.getElementById('matematika').value) || 0,
+            bahasa: parseInt(document.getElementById('bahasa').value) || 0,
+            username: document.getElementById('nis').value
+        };
+
+        if (index === '') {
+            students.push(student);
+            users[student.username] = {
+                username: student.username,
+                password: 'siswa123',
+                role: 'siswa',
+                nis: student.nis
+            };
+        } else {
+            students[index] = student;
+        }
+
+        renderStudentTable();
+        closeModal();
+        alert('Data berhasil disimpan!');
+    }
+
+    function editStudent(index) {
+        openModal(index);
+    }
+
+    function deleteStudent(index) {
+        if(confirm('Yakin ingin menghapus data siswa ini?')) {
+            const deletedStudent = students.splice(index, 1)[0];
+            delete users[deletedStudent.username];
+            renderStudentTable();
+            alert('Data berhasil dihapus!');
+        }
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('studentModal').addEventListener('click', function(e) {
+        if(e.target === this) closeModal();
+    });
+</script>
+
+</body>
+</html>
